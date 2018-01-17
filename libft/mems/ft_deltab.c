@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_deltab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/12/05 17:35:32 by mmanley           #+#    #+#             */
+/*   Updated: 2017/12/20 14:54:39 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+void	ft_deltab(char **tab)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	int y;
+
+	y = 0;
+	if (tab)
 	{
-		ax.x = 0;
-		while (ax.x < max)
+		while (tab[y])
 		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
+			free(tab[y]);
+			tab[y] = NULL;
+			y++;
 		}
-		ax.y += 1;
+		free(tab);
+		tab = NULL;
 	}
-	return (0);
 }

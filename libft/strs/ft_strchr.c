@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/09 15:52:11 by mmanley           #+#    #+#             */
+/*   Updated: 2018/01/11 11:58:56 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+char	*ft_strchr(const char *str, int c)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	int		i;
+	char	test;
+
+	i = 0;
+	test = c;
+	while (str[i])
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		if (str[i] == test)
+			return ((char*)str + i);
+		i++;
 	}
-	return (0);
+	if (str[i] == c)
+		return ((char*)str + i);
+	else
+		return (NULL);
 }

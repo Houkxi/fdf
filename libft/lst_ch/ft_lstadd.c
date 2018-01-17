@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/24 11:41:40 by mmanley           #+#    #+#             */
+/*   Updated: 2017/12/14 16:07:03 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	if (alst && new)
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		new->next = *alst;
+		*alst = new;
 	}
-	return (0);
 }

@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/09 19:01:13 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/09 19:02:01 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
-
-int		square_creation(t_data *data, t_axis ax, int max)
+int		ft_isdigit(int c)
 {
-	ax.y = 0;
-	while (ax.y < max)
-	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
-	}
-	return (0);
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }

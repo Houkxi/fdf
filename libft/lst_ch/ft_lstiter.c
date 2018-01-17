@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/24 12:17:25 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/24 13:06:46 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	ax.y = 0;
-	while (ax.y < max)
+	t_list *tmp;
+
+	tmp = lst;
+	while (lst != NULL)
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		tmp = lst;
+		lst = lst->next;
+		f(tmp);
 	}
-	return (0);
 }

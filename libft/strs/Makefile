@@ -6,33 +6,43 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 18:54:36 by mmanley           #+#    #+#              #
-#    Updated: 2018/01/17 18:13:26 by mmanley          ###   ########.fr        #
+#    Updated: 2018/01/08 09:36:59 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libfdf.a
+NAME = libstr.a
 
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-LFLAGS = -lmlx -framework OpenGL -framework AppKit
+INC = ../includes/
 
-INC = ../
+STR =	ft_count_btw.c\
+		ft_strcat.c\
+		ft_strchr.c\
+		ft_strcmp.c\
+		ft_strcpy.c\
+		ft_strlcat.c\
+		ft_strlen.c\
+		ft_strncat.c\
+		ft_strncmp.c\
+		ft_strncpy.c\
+		ft_strnstr.c\
+		ft_strrchr.c\
+		ft_strstr.c\
+		ft_strdel.c\
+		ft_strmap.c\
+		ft_strclr.c\
+		ft_strequ.c\
+		ft_strnequ.c\
+		ft_strtrim.c\
+		ft_strmapi.c\
+		ft_striter.c\
+		ft_striteri.c\
+		ft_tabcpy.c\
 
-lib = libft/includes/
-
-SRC_PATH = srcs/
-
-SRC =	clean_board.c\
-		draw_lines.c\
-		square_creation.c\
-		fdf.c\
-		spirale_sq_diag.c\
-		spirale_square.c\
-		line.c\
-
-OBJS = $(SRC:.c=.o)
+OBJS = $(STR:.c=.o)
 
 all : $(NAME)
 
@@ -40,17 +50,8 @@ $(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-%.o: $(SRC_PATH)%.c
-	@$(CC) -c $(FLAGS) $< -I $(INC)
-
 %.o: %.c
-	@$(CC) -c $(FLAGS) $<
-
-run : $(NAME)
-	$(CC) $(LFLAGS) -o mlx $< $(LIB) libft/libft.a libfdf.a && ./mlx
-
-lib :
-	@$(MAKE) -C libft
+	@$(CC) -c $(FLAGS) $(STR) -I $(INC)
 
 clean :
 	@rm -f $(OBJS)

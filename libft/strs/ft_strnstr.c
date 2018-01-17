@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/08 18:26:51 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/24 17:28:45 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	size_t i;
+	size_t j;
+
+	i = 0;
+	j = len;
+	while (haystack[i] && needle[i] && haystack[i] == needle[i] && j != 0)
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		i++;
+		j--;
 	}
-	return (0);
+	if (len == 0 && needle[i])
+		return (0);
+	if (!needle[i])
+		return ((char*)haystack);
+	if (!haystack[i])
+		return (0);
+	return (ft_strnstr((char*)haystack + 1, needle, len - 1));
 }

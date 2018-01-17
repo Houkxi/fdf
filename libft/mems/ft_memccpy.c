@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/10 13:35:57 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/17 11:18:47 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	char			to_find;
+	char			*srcs;
+	unsigned char	*dest;
+	size_t			i;
+
+	to_find = (char)c;
+	srcs = (char*)src;
+	dest = (unsigned char*)dst;
+	i = 0;
+	while (i < n)
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		dest[i] = srcs[i];
+		if (srcs[i] == to_find)
+			return ((void*)(dst + i + 1));
+		i++;
 	}
-	return (0);
+	return (NULL);
 }

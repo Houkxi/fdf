@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_count_btw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2018/01/05 21:43:06 by mmanley           #+#    #+#             */
+/*   Updated: 2018/01/05 21:49:49 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+int		ft_count_btw(char *s, char c)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (-1);
+	while (s[i])
 	{
-		ax.x = 0;
-		while (ax.x < max)
+		if (s[i] && s[i] != c)
 		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
+			j++;
+			while (s[i] && s[i] != c)
+				i++;
 		}
-		ax.y += 1;
+		while (s[i] && s[i] == c)
+			i++;
 	}
-	return (0);
+	return (j);
 }

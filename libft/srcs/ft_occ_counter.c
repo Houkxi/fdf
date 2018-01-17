@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_occ_counter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/12/04 19:04:17 by mmanley           #+#    #+#             */
+/*   Updated: 2018/01/03 18:11:08 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+int		ft_occ_counter(char *s, char c)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	int count;
+	int i;
+
+	count = 0;
+	i = 0;
+	if (!s && !*s)
+		return (-1);
+	while (s[i])
 	{
-		ax.x = 0;
-		while (ax.x < max)
+		if (s[i] && s[i] == c)
 		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
+			count++;
+			i++;
 		}
-		ax.y += 1;
+		else if (s[i] && s[i] != c)
+			i++;
 	}
-	return (0);
+	return (count);
 }

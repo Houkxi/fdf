@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/08 19:05:14 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/24 15:42:30 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	int i;
+	int j;
+
+	i = ft_strlen(s1);
+	j = 0;
+	while (s2[j])
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		s1[i] = s2[j];
+		j++;
+		i++;
 	}
-	return (0);
+	s1[i] = '\0';
+	return (s1);
 }

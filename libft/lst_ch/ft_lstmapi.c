@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_lstmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/12/04 16:37:54 by mmanley           #+#    #+#             */
+/*   Updated: 2017/12/07 11:13:21 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+t_list	*ft_lstmapi(t_list *lst, t_list *(*f)(int i, t_list *elem), int i)
 {
-	ax.y = 0;
-	while (ax.y < max)
+	t_list	*new;
+
+	if (lst && f)
 	{
-		ax.x = 0;
-		while (ax.x < max)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
-		}
-		ax.y += 1;
+		new = f(i, lst);
+		lst = lst->next;
+		if (lst)
+			new = ft_lstmapi(lst, f, i + 1);
+		return (new);
 	}
-	return (0);
+	return (NULL);
 }

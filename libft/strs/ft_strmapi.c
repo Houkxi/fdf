@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   square_creation.c                                  :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/11 17:14:10 by mmanley           #+#    #+#             */
-/*   Updated: 2018/01/12 15:10:22 by mmanley          ###   ########.fr       */
+/*   Created: 2017/11/17 15:45:07 by mmanley           #+#    #+#             */
+/*   Updated: 2017/11/20 11:22:51 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		square_creation(t_data *data, t_axis ax, int max)
+char	*ft_strmapi(char *s, char (*f)(unsigned int, char))
 {
-	ax.y = 0;
-	while (ax.y < max)
+	char			*new;
+	int				i;
+	unsigned int	j;
+
+	j = 0;
+	i = 0;
+	if (s != NULL && s[i])
 	{
-		ax.x = 0;
-		while (ax.x < max)
+		i = ft_strlen(s) + 1;
+		if ((new = (char*)malloc(1 * i)) == 0)
+			return (NULL);
+		i = 0;
+		while (s[i])
 		{
-			mlx_pixel_put(data->mlx, data->win, data->y + ax.y, data->x + ax.x, 0X0066FF66);
-			ax.x += 1;
+			new[i] = f(j, s[i]);
+			i++;
+			j++;
 		}
-		ax.y += 1;
+		new[i] = '\0';
+		return (new);
 	}
-	return (0);
+	return (NULL);
 }
